@@ -20,13 +20,15 @@ body{margin:0;font-family:system-ui,Arial,sans-serif;background:#fff;color:#5a0f
 <body>
 <div><div class="l">HRE</div><div id="m">Loading…</div></div>
 <script>
-const API="https://script.google.com/macros/s/AKfycbzdqu883oVyK1W2CbLFWGGxgaD4lHpvf_b0l5LOH7Xz147Ft2VIUIptgdrVKqDIPHRw/exec";
+(function(){
+var U="https://script.google.com/macros/s/AKfycbzdqu883oVyK1W2CbLFWGGxgaD4lHpvf_b0l5LOH7Xz147Ft2VIUIptgdrVKqDIPHRw/exec";
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
 function show(h){document.open();document.write(h);document.close()}
-fetch(API+"?api=page",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.text()})
+fetch(U+"?api=page",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.text()})
 .then(function(h){try{localStorage.setItem("hre_page",h)}catch(e){}show(h)})
 .catch(function(){var h=null;try{h=localStorage.getItem("hre_page")}catch(e){}
  if(h)show(h);else document.getElementById("m").textContent="No connection. Check your internet and open the app again.";});
+})();
 </script>
 </body>
 </html>
